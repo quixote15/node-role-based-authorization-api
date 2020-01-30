@@ -6,6 +6,10 @@ const FileSchema = mongoose.model('File').schema;
 const UserSchema = new mongoose.Schema({
     name: String,
     username: String,
+    cpf: String,
+    registerID: String,
+    accessCard: String,
+    gender: String,
     password: String,
     role: String,
     bio: String,
