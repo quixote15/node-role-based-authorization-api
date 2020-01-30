@@ -9,16 +9,26 @@ const Role = require('_helpers/role');
 const UserController = require('./controllers/UserController');
 const AdminController = require('./controllers/AdminController');
 const FileController = require('./controllers/FileController');
+const TrainingController = require('./controllers/TrainingController');
 
 
 const upload = multer(multerConfig);
 // routes
 router.post('/auth', authenticate);     // public route
 router.post('/admin', AdminController.store);       // all authenticated users
-router.delete('/admin/:id', AdminController.destroy);       // all authenticated users
+router.delete('/admin/:id', AdminController.destroy);
+
+// Users
 router.post('/users', authorize(Role.Admin), UserController.store); // admin only
 router.delete('/users/:id', authorize(Role.Admin), UserController.destroy); // admin only
-router.get('/users', UserController.index);       // all authenticated users
+router.get('/users', UserController.index);
+
+//Trainings
+router.get('/trainings', TrainingController.index);
+router.post('/trainings', TrainingController.store);
+router.delete('/trainings/:id', TrainingController.destroy);
+
+router.post('/trainings/:id/banner', upload.single('banner'), FileController.storeBanner);
 router.post('/profile/:id', upload.single('avatar'), FileController.store);
 
 function authenticate(req, res, next) {
