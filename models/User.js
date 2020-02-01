@@ -14,6 +14,8 @@ const UserSchema = new mongoose.Schema({
     role: String,
     bio: String,
     email: String,
+    birthday: String,
+    career: String,
     phone: [String],
     avatar: {
         type: FileSchema,

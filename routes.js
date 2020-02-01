@@ -20,7 +20,7 @@ router.post('/admin', AdminController.store);       // all authenticated users
 router.delete('/admin/:id', AdminController.destroy);
 
 // Users
-router.post('/users', authorize(Role.Admin), UserController.store); // admin only
+router.post('/users',UserController.store); // admin only
 router.delete('/users/:id', authorize(Role.Admin), UserController.destroy); // admin only
 router.get('/users', UserController.index);
 
