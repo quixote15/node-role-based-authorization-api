@@ -10,6 +10,7 @@ const UserController = require('./controllers/UserController');
 const AdminController = require('./controllers/AdminController');
 const FileController = require('./controllers/FileController');
 const TrainingController = require('./controllers/TrainingController');
+const FormController = require('./controllers/FormController');
 
 
 const upload = multer(multerConfig);
@@ -30,6 +31,14 @@ router.delete('/trainings/:id', TrainingController.destroy);
 
 router.post('/trainings/:id/banner', upload.single('banner'), FileController.storeBanner);
 router.post('/profile/:id', upload.single('avatar'), FileController.store);
+
+//Form
+router.get('/forms', FormController.index);
+router.get('/forms/active', FormController.findActive);
+router.get('/forms/:id', FormController.find);
+router.post('/forms', FormController.store);
+router.put('/forms/:id', FormController.update);
+router.delete('/forms/:id', FormController.destroy);
 
 function authenticate(req, res, next) {
     console.log(req.body)
