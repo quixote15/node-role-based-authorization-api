@@ -32,6 +32,22 @@ module.exports = {
         return response.status(200).json(user);
     },
 
+    async find(request, response) {
+        const user = await User.findById(request.params.id);
+
+        return response.json(user);
+    },
+
+    async update(request, response){
+        try {
+            const updatedUser = await User.findOneAndUpdate({_id: request.params.id}, request.body);
+
+            return response.json(updatedUser);
+        } catch (error) {
+            return response.status(403).send('Error')
+        }
+    },
+
     async destroy(request, response){
         console.log(request.params.id);
         try {

@@ -23,6 +23,8 @@ router.delete('/admin/:id', AdminController.destroy);
 router.post('/users',UserController.store); // admin only
 router.delete('/users/:id', authorize(Role.Admin), UserController.destroy); // admin only
 router.get('/users', UserController.index);
+router.get('/users/:id', UserController.find);
+router.put('/users/:id', UserController.update);
 
 //Trainings
 router.get('/trainings', TrainingController.index);
